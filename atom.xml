@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.lulizhou.com/"/>
-  <updated>2016-01-28T08:09:28.000Z</updated>
+  <updated>2016-01-28T08:51:59.000Z</updated>
   <id>http://blog.lulizhou.com/</id>
   
   <author>
@@ -19,12 +19,12 @@
     <link href="http://blog.lulizhou.com/2016/01/28/tiny-progress/"/>
     <id>http://blog.lulizhou.com/2016/01/28/tiny-progress/</id>
     <published>2016-01-28T07:57:27.000Z</published>
-    <updated>2016-01-28T08:09:28.000Z</updated>
+    <updated>2016-01-28T08:51:59.000Z</updated>
     <content type="html"><![CDATA[<h1 id="tiny-progress_28_u7F51_u9875_u9876_u90E8_u8FDB_u5EA6_u6761_29"><a href="#tiny-progress_28_u7F51_u9875_u9876_u90E8_u8FDB_u5EA6_u6761_29" class="headerlink" title="tiny-progress(网页顶部进度条)"></a>tiny-progress(网页顶部进度条)</h1><p>最近看阮一峰的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">技术博客</a>看到的一个插件，自己实现了一波。第一个小轮子，轻喷。</p>
 <h2 id="Preview_28_u9884_u89C8_29"><a href="#Preview_28_u9884_u89C8_29" class="headerlink" title="Preview(预览)"></a>Preview(预览)</h2><p><a href="http://output.jsbin.com/lokiro" target="_blank" rel="external">http://output.jsbin.com/lokiro</a></p>
 <h2 id="usage_uFF08_u4F7F_u7528_uFF09"><a href="#usage_uFF08_u4F7F_u7528_uFF09" class="headerlink" title="usage（使用）"></a>usage（使用）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"tiny-progress.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">new porgressbar();</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="Config_uFF08_u914D_u7F6E_uFF09"><a href="#Config_uFF08_u914D_u7F6E_uFF09" class="headerlink" title="Config（配置）"></a>Config（配置）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultconfig = &#123;</span><br><span class="line">    height: <span class="string">"4px"</span>, <span class="comment">//进度条高度</span></span><br><span class="line">      background: <span class="string">"rgb(18, 134, 134)"</span> <span class="comment">//进度条颜色</span></span><br><span class="line">    &#125;         </span><br><span class="line"><span class="keyword">new</span> porgressbar(defaultconfig);</span><br></pre></td></tr></table></figure>
+<h2 id="Config_uFF08_u914D_u7F6E_uFF09"><a href="#Config_uFF08_u914D_u7F6E_uFF09" class="headerlink" title="Config（配置）"></a>Config（配置）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultconfig = &#123;</span><br><span class="line">    height: <span class="string">"4px"</span>, <span class="comment">//进度条高度</span></span><br><span class="line">    background: <span class="string">"rgb(18, 134, 134)"</span> <span class="comment">//进度条颜色</span></span><br><span class="line">    &#125;         </span><br><span class="line"><span class="keyword">new</span> porgressbar(defaultconfig);</span><br></pre></td></tr></table></figure>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="tiny-progress_28_u7F51_u9875_u9876_u90E8_u8FDB_u5EA6_u6761_29"><a href="#tiny-progress_28_u7F51_u9875_u9876_u90E8_u8FDB_u5EA6_u6761_29" class="headerlink" title="tiny-progress(网页顶部进度条)"></a>tiny-progress(网页顶部进度条)</h1><p>最近看阮一峰的<a href="http://es6.ruanyifeng.com/">技术博客</a>看到的一个插件，自己实现了一波。第一个小轮子，轻喷。</p>

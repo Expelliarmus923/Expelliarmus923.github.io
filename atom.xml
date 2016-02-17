@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.lulizhou.com/"/>
-  <updated>2016-01-28T08:51:59.000Z</updated>
+  <updated>2016-02-17T02:01:37.000Z</updated>
   <id>http://blog.lulizhou.com/</id>
   
   <author>
@@ -15,11 +15,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[《javascript权威指南》读书笔记]]></title>
+    <link href="http://blog.lulizhou.com/2016/02/17/%E3%80%8Ajavascript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://blog.lulizhou.com/2016/02/17/《javascript权威指南》读书笔记/</id>
+    <published>2016-02-17T01:46:05.000Z</published>
+    <updated>2016-02-17T02:01:37.000Z</updated>
+    <content type="html"><![CDATA[<p><strong> 1.什么是原型？</strong></p>
+<blockquote>
+<p>每一个javascript对象（除null）都和另一个对象相关联。”另一个”对象就是我们熟知的原型，每一个对象都从原型继承属性。</p>
+<p>所有通过对象直接量创建的对象都具有同一个原型对象，并可以通过Object.prototype获得对原型对象的引用。</p>
+</blockquote>
+<p><strong> 2.什么是原型链？ </strong></p>
+<blockquote>
+<p>所有内置构造函数（以及大部分自定义的构造函数）都具有一个继承自Obejct.prototype的原型。这一系列链接的原型对象就是所谓的”原型链”「prototype chain」。</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong> 1.什么是原型？</strong></p>
+<blockquote>
+<p>每一个javascript对象（除null）都和另一个对象相关联。”另一个”对象就是我们熟知的原型，每一个对象都从原型继承属性。</p>
+<p>所有通过对象直接量创建的对象都具有同]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[tiny progress]]></title>
     <link href="http://blog.lulizhou.com/2016/01/28/tiny-progress/"/>
     <id>http://blog.lulizhou.com/2016/01/28/tiny-progress/</id>
     <published>2016-01-28T07:57:27.000Z</published>
-    <updated>2016-01-28T08:51:59.000Z</updated>
+    <updated>2016-02-17T01:56:33.000Z</updated>
     <content type="html"><![CDATA[<h1 id="tiny-progress_28_u7F51_u9875_u9876_u90E8_u8FDB_u5EA6_u6761_29"><a href="#tiny-progress_28_u7F51_u9875_u9876_u90E8_u8FDB_u5EA6_u6761_29" class="headerlink" title="tiny-progress(网页顶部进度条)"></a>tiny-progress(网页顶部进度条)</h1><p>最近看阮一峰的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">技术博客</a>看到的一个插件，自己实现了一波。第一个小轮子，轻喷。</p>
 <h2 id="Preview_28_u9884_u89C8_29"><a href="#Preview_28_u9884_u89C8_29" class="headerlink" title="Preview(预览)"></a>Preview(预览)</h2><p><a href="http://output.jsbin.com/lokiro" target="_blank" rel="external">http://output.jsbin.com/lokiro</a></p>
 <h2 id="usage_uFF08_u4F7F_u7528_uFF09"><a href="#usage_uFF08_u4F7F_u7528_uFF09" class="headerlink" title="usage（使用）"></a>usage（使用）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"tiny-progress.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">new porgressbar();</span></span><br></pre></td></tr></table></figure>

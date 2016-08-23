@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.lulizhou.com/"/>
-  <updated>2016-03-25T11:34:16.000Z</updated>
+  <updated>2016-08-23T07:09:17.000Z</updated>
   <id>http://blog.lulizhou.com/</id>
   
   <author>
@@ -13,6 +13,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[css3动画整理]]></title>
+    <link href="http://blog.lulizhou.com/2016/08/22/css3%E5%8A%A8%E7%94%BB%E6%95%B4%E7%90%86/"/>
+    <id>http://blog.lulizhou.com/2016/08/22/css3动画整理/</id>
+    <published>2016-08-22T10:07:19.000Z</published>
+    <updated>2016-08-23T07:09:17.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>通过强大的css3 animation可以取代大量JS代码，也能页面更加流畅。</p>
+<p><strong> (1) animation-name </strong></p>
+<p>定义动画名字（即keyframes的名字)</p>
+<p><strong> (2) @keyframes </strong></p>
+<p>如定义了animation-name:move;则需要定义</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes move &#123;</span><br><span class="line">  0%&#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">  100%&#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者等同于0~100%的from to</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes move &#123;</span><br><span class="line">  from &#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">  to &#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong> (3) animation-duration </strong></p>
+<p>动画执行的时间（单位是秒，如1s）</p>
+<p><strong> (4) animation-time-function </strong></p>
+<p>动画播放速度曲线,这是控制运动方式的关键，默认是ease(缓解效果)。常见还有ease-in，ease-out，以及ease-in-out和linear，以及强大的立方贝塞尔曲线效果cubic-bezier。这里列举一个不常见但却十分有用的steps。</p>
+<blockquote>
+<p>steps(<number>[, [ start | end ] ]?)：第一个参数number为指定的间隔数，即把动画分为n步阶段性展示，第二个参数默认为end，设置最后一步的状态，start为结束时的状态，end为开始时的状态，若设置与animation-fill-mode的效果冲突，而以animation-fill-mode的设置为动画结束的状态。</number></p>
+</blockquote>
+<p>这个效果可以做不需要过渡效果帧动画。</p>
+<a id="more"></a>
+<p><strong> (5) animation-delay </strong></p>
+<p>指定对象动画延迟执行的时间(单位是秒)</p>
+<p><strong> (6) animation-iteration-count </strong></p>
+<p>指定对象动画循环播放的次数。infinite表示无限次</p>
+<p><strong> (7) animation-direction </strong></p>
+<blockquote>
+<p><strong> normal</strong>：正常方向。<br><br><strong> reverse</strong>：动画反向运行,方向始终与normal相反。（FF14.0.1以下不支持）<br><br><strong> alternate</strong> ：动画会循环正反方向交替运动，奇数次（1、3、5……）会正常运动，偶数次（2、4、6……）会反向运动，即所有相关联的值都会反向。<br><br><strong> alternate-reverse</strong>：动画从反向开始，再正反方向交替运动，运动方向始终与alternate定义的相反。（FF14.0.1以下不支持）<br></p>
+</blockquote>
+<p>这是一个十分有用的属性，比如我们需要把某个div移动到translate3d(200px,200px,0)并且改变背景色,在normal的时候我们需要</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> move</span>&#123;</span><br><span class="line">    0%<span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#32beec</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    25%<span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#c3d9ff</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    50%<span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#bbaad7</span></span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">200px</span>, <span class="number">200px</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">      <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    75%<span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#c3d9ff</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">    100%<span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#32beec</span></span></span>;</span><br><span class="line">    &#125;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>把属性值设置为alternate时，只需把中间状态设置成100%达到同样的效果<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">keyframes</span> move2</span>&#123;</span><br><span class="line">      0%<span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#32beec</span></span></span>;</span><br><span class="line">      &#125;</span></span><br><span class="line">      50%<span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#c3d9ff</span></span></span>;</span><br><span class="line">      &#125;</span></span><br><span class="line">      100%<span class="rules">&#123;</span><br><span class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#bbaad7</span></span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">transform</span>:<span class="value"> <span class="function">translate3d</span>(<span class="number">200px</span>, <span class="number">200px</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50%</span></span></span>;</span><br><span class="line">      &#125;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> (8) animation-play-state </strong></p>
+<p>animation-play-state 属性规定动画正在运行还是暂停。</p>
+<p><strong> (9) animation-fill-mode </strong></p>
+<blockquote>
+<p><strong> none</strong>：默认值。不设置对象动画之外的状态<br><br><strong> forwards</strong>：结束后保持动画结束时的状态，但当animation-direction为0，则动画不执行，持续保持动画开始时的状态<br><br><strong> backwards</strong>：结束后返回动画开始时的状态<br><br><strong> both</strong>：结束后可遵循forwards和backwards两个规则。</p>
+</blockquote>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p><a href="http://isux.tencent.com/css3/index.html" target="_blank" rel="external">css3动画手册</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>通过强大的css3 animation可以取代大量JS代码，也能页面更加流畅。</p>
+<p><strong> (1) animation-name </strong></p>
+<p>定义动画名字（即keyframes的名字)</p>
+<p><strong> (2) @keyframes </strong></p>
+<p>如定义了animation-name:move;则需要定义</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes move &#123;</span><br><span class="line">  0%&#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">  100%&#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者等同于0~100%的from to</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes move &#123;</span><br><span class="line">  from &#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">  to &#123;</span><br><span class="line">    //props</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong> (3) animation-duration </strong></p>
+<p>动画执行的时间（单位是秒，如1s）</p>
+<p><strong> (4) animation-time-function </strong></p>
+<p>动画播放速度曲线,这是控制运动方式的关键，默认是ease(缓解效果)。常见还有ease-in，ease-out，以及ease-in-out和linear，以及强大的立方贝塞尔曲线效果cubic-bezier。这里列举一个不常见但却十分有用的steps。</p>
+<blockquote>
+<p>steps(<number>[, [ start | end ] ]?)：第一个参数number为指定的间隔数，即把动画分为n步阶段性展示，第二个参数默认为end，设置最后一步的状态，start为结束时的状态，end为开始时的状态，若设置与animation-fill-mode的效果冲突，而以animation-fill-mode的设置为动画结束的状态。</p>
+</blockquote>
+<p>这个效果可以做不需要过渡效果帧动画。</p>]]>
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[JavaScript图片预加载]]></title>

@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.lulizhou.com/"/>
-  <updated>2016-08-23T07:09:17.000Z</updated>
+  <updated>2016-11-30T02:30:07.000Z</updated>
   <id>http://blog.lulizhou.com/</id>
   
   <author>
@@ -19,8 +19,9 @@
     <link href="http://blog.lulizhou.com/2016/08/22/css3%E5%8A%A8%E7%94%BB%E6%95%B4%E7%90%86/"/>
     <id>http://blog.lulizhou.com/2016/08/22/css3动画整理/</id>
     <published>2016-08-22T10:07:19.000Z</published>
-    <updated>2016-08-23T07:09:17.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>通过强大的css3 animation可以取代大量JS代码，也能页面更加流畅。</p>
+    <updated>2016-11-30T02:30:07.000Z</updated>
+    <content type="html"><![CDATA[<p>本文会分两部分介绍css3动画，第一部分是中规中矩的api整理，第二部分会讲讲一些实战。。</p>
+<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>通过强大的css3 animation可以取代大量JS代码，也能页面更加流畅。</p>
 <p><strong> (1) animation-name </strong></p>
 <p>定义动画名字（即keyframes的名字)</p>
 <p><strong> (2) @keyframes </strong></p>
@@ -52,12 +53,23 @@
 <p>animation-play-state 属性规定动画正在运行还是暂停。</p>
 <p><strong> (9) animation-fill-mode </strong></p>
 <blockquote>
-<p><strong> none</strong>：默认值。不设置对象动画之外的状态<br><br><strong> forwards</strong>：结束后保持动画结束时的状态，但当animation-direction为0，则动画不执行，持续保持动画开始时的状态<br><br><strong> backwards</strong>：结束后返回动画开始时的状态<br><br><strong> both</strong>：结束后可遵循forwards和backwards两个规则。</p>
+<p><strong> none</strong>：默认值。不设置对象动画之外的状态<br><br><strong> forwards</strong>：结束后保持动画结束时的状态，但当animation-direction为0，则动画不执行，持续保持动画开始时的状态<br><br><strong> backwards</strong>：结束后返回动画开始时的状态<br><br><strong> both</strong>：结束后可遵循forwards和backwards两个规则。<br>第一次上手动画的时候都遇到过“动画结束后，突然跳回第一帧！”的坑吧，设置animation-fill-mode为forwards就能保持最后一帧的状态了。</p>
+<h2 id="CSS3_u9010_u5E27_u52A8_u753B"><a href="#CSS3_u9010_u5E27_u52A8_u753B" class="headerlink" title="CSS3逐帧动画"></a>CSS3逐帧动画</h2><p>实现帧动画，得用到上面讲的<strong> animation-time-function </strong>的steps，这个函数有二个参数，第一个可以理解成过渡需要的步数，如下面的例子step(1)，表示从0%-50%需要过渡1步。</p>
 </blockquote>
-<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p><a href="http://isux.tencent.com/css3/index.html" target="_blank" rel="external">css3动画手册</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.step&#123;&#10;  width:65px;&#10;  height:70px;&#10;  background:url(&#39;http://7xjj1h.com1.z0.glb.clouddn.com/%20dragin.png&#39;) no-repeat;&#10;  background-position:-188px 0;&#10;  animation:move steps(1) 0.4s  infinite;&#10;&#125;&#10;@keyframes move&#123;&#10;  0%&#123;&#10;    background-position:-188px 0;&#10;  &#125;&#10;  50%&#123;&#10;    background-position:-251px 0;&#10;  &#125;&#10;  100%&#123;&#10;    background-position:-317px 0;&#10;  &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>step第二个参数用来设置最后一步的状态，start表示结束的状态，end表示开始的状态，w3c这张图，很精准地像我们描述了二者的差异。<br><img src="http://7xr52v.com1.z0.glb.clouddn.com/091121212334792.png" alt="w3c"><br>当为start的时候是看不到0%的状态的，而当为end的时候是看不到100%的状态的（没有持续的时间）。<br>基于这个原理我们可以把上面的例子再简化一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> .step&#123;&#10;            width:65px;&#10;            height:70px;&#10;            background:url(&#39;http://7xjj1h.com1.z0.glb.clouddn.com/%20dragin.png&#39;) no-repeat -188px 0;&#10;            animation:move steps(3) 0.4s infinite;&#10;        &#125;&#10;@keyframes move&#123;&#10;            0%&#123;&#10;                background-position:-188px 0;&#10;            &#125;&#10;            100%&#123;&#10;                background-position:-380px 0;&#10;            &#125;&#10;        &#125;</span><br></pre></td></tr></table></figure>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="dOWmgE" data-default-tab="css,result" data-user="Expelliarmus923" data-embed-version="2" data-pen-title="CSS3帧动画" class="codepen">See the Pen <a href="https://codepen.io/Expelliarmus923/pen/dOWmgE/" target="_blank" rel="external">CSS3帧动画</a> by web前端嗨起来 (<a href="http://codepen.io/Expelliarmus923" target="_blank" rel="external">@Expelliarmus923</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><br>因为steps，第一个参数从0%到100%要平均走三步，第二个默认参数是end，当位置为100%是不会显示的，在正确的雪碧图下，该动画就会正常显示了。<br>如果实在不知道要设置几帧安利一个动画<a href="http://tid.tenpay.com/labs/css3_keyframes_calculator.html" target="_blank" rel="external">帧数计算器</a></p>
+<p>##CSS3序列动画<br>多个元素使用相同的动画效果时，将动画执行时机依次错开，可形成整齐有序的序列动画效果。<br>因为css3动画没有时间轴的概念，好在我们可以用animation-delay实现相同的效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.loop(@n:1) when(@n&#60;=4)&#123;&#10;  @v:@n*0.2;&#10;  &#38;:nth-child(@&#123;n&#125;)&#123;&#10;    animation-delay:~&#34;@&#123;v&#125;s&#34;;&#10;  &#125;&#10;  .loop(@n+1);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="vyevzo" data-default-tab="css,result" data-user="Expelliarmus923" data-embed-version="2" data-pen-title="CSS3序列动画" class="codepen">See the Pen <a href="https://codepen.io/Expelliarmus923/pen/vyevzo/" target="_blank" rel="external">CSS3序列动画</a> by web前端嗨起来 (<a href="http://codepen.io/Expelliarmus923" target="_blank" rel="external">@Expelliarmus923</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script></p>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html" target="_blank" rel="external">css3动画简介</a><br><a href="http://isux.tencent.com/css3/index.html" target="_blank" rel="external">css3动画手册</a><br><a href="http://www.w3cmark.com/2015/422.html" target="_blank" rel="external">css3逐帧动画-飘动旗子</a><br><a href="https://segmentfault.com/a/1190000003760874?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">css动画step</a><br><a href="http://www.cnblogs.com/aaronjs/p/4642015.html" target="_blank" rel="external">深入理解steps</a><br><a href="https://aotu.io/notes/2016/01/04/css3-animation/" target="_blank" rel="external">css3动画实战</a><br><a href="http://weibo.com/p/1001603865643593165786" target="_blank" rel="external">H5动画性能优化</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>通过强大的css3 animation可以取代大量JS代码，也能页面更加流畅。</p>
+    <![CDATA[<p>本文会分两部分介绍css3动画，第一部分是中规中矩的api整理，第二部分会讲讲一些实战。。</p>
+<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>通过强大的css3 animation可以取代大量JS代码，也能页面更加流畅。</p>
 <p><strong> (1) animation-name </strong></p>
 <p>定义动画名字（即keyframes的名字)</p>
 <p><strong> (2) @keyframes </strong></p>

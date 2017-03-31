@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.lulizhou.com/"/>
-  <updated>2017-03-31T07:07:30.000Z</updated>
+  <updated>2017-03-31T09:01:24.000Z</updated>
   <id>http://blog.lulizhou.com/</id>
   
   <author>
@@ -19,17 +19,16 @@
     <link href="http://blog.lulizhou.com/2017/03/31/%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
     <id>http://blog.lulizhou.com/2017/03/31/真机调试各种方法/</id>
     <published>2017-03-31T04:00:37.000Z</published>
-    <updated>2017-03-31T07:07:30.000Z</updated>
+    <updated>2017-03-31T09:01:24.000Z</updated>
     <content type="html"><![CDATA[<p>做过H5一定都会为兼容各种手机而苦恼过，自己手机上完美复原设计稿，一到别的手机就漏洞百出，各种问题。然后拿到问题手机，定位问题（黑人问号脸），真机怎么定位？下面小结下4种真机调试的方式以及优缺点。</p>
 <h2 id="1-chrome_+_android"><a href="#1-chrome_+_android" class="headerlink" title="1.chrome + android"></a>1.chrome + android</h2><p>chrome开发者工具能基本模拟的手机环境，配上各种断点调试，一大利器。chrome有一个调试真机的方法。大概分为以下几步</p>
 <ol>
 <li>准备一条USB数据线。（只能通过硬件连接）</li>
 <li>android用chrome打开页面</li>
 <li>手机连接上电脑，打开chrome输入chrome://inspect/ ，进入调试模式。</li>
-<li>chrome能看到这个页面了 <img src="//7xowc1.com1.z0.glb.clouddn.com/14908568082939.png" alt=""><br>5.点击inspect，进入熟悉的调试页面。<img src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照-2017-03-30-下午2.55.05.png" alt="屏幕快照-2017-03-30-下午2.55.05"><br><strong>优点：</strong><br>1.可以用chrome强大的调试工具，调试起来十分方便。</li>
+<li>chrome能看到这个页面了 <img width="50%" src="//7xowc1.com1.z0.glb.clouddn.com/14908568082939.png"><br>5.点击inspect，进入熟悉的调试页面。<br><img width="50%" src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照-2017-03-30-下午2.55.05.png"><br><strong>优点：</strong><br>1.可以用chrome强大的调试工具，调试起来十分方便。</li>
 </ol>
-<p><strong>缺点：</strong><br>1.只能android。<br>2.只能用手机版chrome。<br>3.实际使用起来十分卡顿。</p>
-<a id="more"></a>
+<p><strong>缺点：</strong><br>1.只能android。<br>2.只能用手机版chrome。<br>3.实际使用起来十分卡顿。<br><a id="more"></a></p>
 <h2 id="2-Safari_28Mac_29+_iOS"><a href="#2-Safari_28Mac_29+_iOS" class="headerlink" title="2.Safari(Mac)+ iOS"></a>2.Safari(Mac)+ iOS</h2><p>苹果的产品虽然封闭，但是其还是提供了一些暖心的小功能，方便开发者。通过以下几步<br>1.努力赚钱买个iPhone和Mac。<br>2.打开手机<strong>设置</strong> -&gt; <strong>Safari</strong> -&gt; <strong>高级</strong> -&gt; 打开Web检查器<br><img src="//7xowc1.com1.z0.glb.clouddn.com/IMG_1651-3.png" alt="IMG_1651"><br>3.连接数据线到Mac，手机打开safari，电脑打开safari。<br>4.safari打开<strong>开发</strong> -&gt; <strong>iPhone</strong> 就能看到调试的页面了。<br><img src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照-2017-03-30-下午3.34.53.png" alt="屏幕快照-2017-03-30-下午3.34.53"></p>
 <p><strong>优点：</strong>快，很流畅，不卡顿<br><strong>缺点：</strong></p>
 <ol>
@@ -45,21 +44,25 @@
 <p>可以在控制台看到如下log</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2017-03-30T08:29:09.686Z weinre: starting server at http://192.168.38.159:8080</span><br></pre></td></tr></table></figure>
 <p>服务启动成功！</p>
-<p>打开<a href="http://192.168.38.159:8080" target="_blank" rel="external">http://192.168.38.159:8080</a> ,进入管理页面。<br>复制页面上的script标签，我们需要把这段代码插入到你需要调试的页面上。<img src="//7xowc1.com1.z0.glb.clouddn.com/14908675944535.jpg" alt=""></p>
-<p>开发的时候我们可以直接写到页面头部，但是线上页面怎么插呢？<br>拿这个花瓶<a href="https://www.charlesproxy.com/" target="_blank" rel="external">charles</a>插！<br><img src="//7xowc1.com1.z0.glb.clouddn.com/14908691423215.jpg" alt=""></p>
-<p>charles有一个技能是可以重写代理过来的请求和响应。（Tools-&gt;Rewrite）<br><img src="//7xowc1.com1.z0.glb.clouddn.com/14908836876399.png" alt=""><br>我们可以add一个，type写成Body，勾选Response。<br>这里直接把script标签插到了title前面。<br><img src="//7xowc1.com1.z0.glb.clouddn.com/14908840002181.png" alt=""></p>
-<p>关于charles更多小技能可以参考这篇 <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">Charles 从入门到精通</a><br>保证你手机和电脑在同一个局域网内，设置好代理后，打开Weinre的启动页面，进入调试页面。<br><img src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照 2017-03-31 上午10.23.15-1.png" alt="屏幕快照 2017-03-31 上午10.23.15"></p>
+<p>打开<a href="http://192.168.38.159:8080" target="_blank" rel="external">http://192.168.38.159:8080</a> ,进入管理页面。<br>复制页面上的script标签，我们需要把这段代码插入到你需要调试的页面上。<br><img width="50%" src="//7xowc1.com1.z0.glb.clouddn.com/14908675944535.jpg"></p>
+<p>开发的时候我们可以直接写到页面头部，但是线上页面怎么插呢？<br>拿这个花瓶<a href="https://www.charlesproxy.com/" target="_blank" rel="external">charles</a>插！<br><img src="//7xowc1.com1.z0.glb.clouddn.com/14908691423215.jpg" alt="img-w400"></p>
+<p>charles有一个技能是可以重写代理过来的请求和响应。（Tools-&gt;Rewrite）<br> <img width="50%" src="//7xowc1.com1.z0.glb.clouddn.com/14908836876399.png"></p>
+<p>我们可以add一个，type写成Body，勾选Response。<br>这里直接把script标签插到了title前面。<br><img width="50%" src="//7xowc1.com1.z0.glb.clouddn.com/14908840002181.png"></p>
+<p>关于charles更多小技能可以参考这篇 <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">Charles 从入门到精通</a><br>保证你手机和电脑在同一个局域网内，设置好代理后，打开Weinre的启动页面，进入调试页面。<br><img width="50%" src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照 2017-03-31 上午10.23.15-1.png"></p>
 <p><strong>优点：</strong><br>1.不受浏览器限制，可以调试app内的webview<br>2.不受环境限制。iOS，android通用。<br><strong>缺点：</strong><br>1.不能查看cookie。这个应该是浏览器的安全策略，部分网页cookie（header里面的set-cookie设置为http-only）通过js是获取不到的。<br>2.网络环境一变，就需要重新配置，因为内网IP一变，影响到其引用的文件。<br>3.暂不支持https。</p>
-<p>##4.<a href="https://github.com/wuchangming/spy-debugger" target="_blank" rel="external">spy-debugger</a></p>
-<blockquote>
+<h2 id="4-Spy-Debugger"><a href="#4-Spy-Debugger" class="headerlink" title="4.Spy-Debugger"></a>4.Spy-Debugger</h2><blockquote>
 <p>spy-debugger内部集成了weinre、node-mitmproxy、AnyProxy。支持HTTP/HTTPS。</p>
 </blockquote>
-<p>同样是基于nodejs开发的。npm一下即可安装</p>
+<p>安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install spy-debugger -g</span><br></pre></td></tr></table></figure>
-<p><strong>三分钟上手</strong><br>1.手机和PC保持在同一网络下（比如同时连到一个Wi-Fi下）<br>2.命令行输入spy-debugger，按命令行提示用浏览器打开相应地址。<br>3.设置手机的HTTP代理，代理IP地址设置为PC的IP地址，端口为spy-debugger的启动端口(默认端口：9888)。<br>Android设置代理步骤：设置 - WLAN - 长按选中网络 - 修改网络 - 高级 - 代理设置 - 手动<br>iOS设置代理步骤：设置 - 无线局域网 - 选中网络 - HTTP代理手动<br>4.手机安装证书。注：手机必须先设置完代理后再通过(非微信)手机浏览器访问<a href="http://s.xxx" target="_blank" rel="external">http://s.xxx</a> 安装证书（手机首次调试需要安装证书，已安装了证书的手机无需重复安装)。<a href="https://github.com/wuchangming/spy-debugger/blob/master/demo/img/QRCodeForCert.png" target="_blank" rel="external">二维码地址</a><br>5.用手机浏览器访问你要调试的页面即可。</p>
+<p><strong>三分钟上手</strong></p>
+<p>1.手机和PC保持在同一网络下（比如同时连到一个Wi-Fi下）</p>
+<p>2.命令行输入spy-debugger，按命令行提示用浏览器打开相应地址。</p>
+<p>3.设置手机的HTTP代理，代理IP地址设置为PC的IP地址，端口为spy-debugger的启动端口(默认端口：9888)。<br>Android设置代理步骤：设置 - WLAN - 长按选中网络 - 修改网络 - 高级 - 代理设置 - 手动<br>iOS设置代理步骤：设置 - 无线局域网 - 选中网络 - HTTP代理手动</p>
+<p>4.手机安装证书。注：手机必须先设置完代理后再通过(非微信)手机浏览器访问<a href="http://s.xxx" target="_blank" rel="external">http://s.xxx</a> 安装证书（手机首次调试需要安装证书，已安装了证书的手机无需重复安装)。<a href="https://github.com/wuchangming/spy-debugger/blob/master/demo/img/QRCodeForCert.png" target="_blank" rel="external">二维码地址</a></p>
+<p>5.用手机浏览器访问你要调试的页面即可。</p>
 <p> <strong>优缺点</strong><br>优点：<br>1.支持https<br>2.开源软件，免费<br>3.操作简单，方便易用<br>缺点：<br>1.无法断点调试<br>2.抓包界面没有decodeURL，用户体验上没有charles好。</p>
-<p>##总结</p>
-<p>第一种第二种方法虽然受限于环境，但是可以打断点调试程序，而且是浏览器底层实现，稳定性高。</p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>第一种第二种方法虽然受限于环境，但是可以打断点调试程序，而且是浏览器底层实现，稳定性高。</p>
 <p>第三种第四种方法不受环境限制，简单易上手。但不能断点调试，稳定性相对比较差。<br>大家可按照自己的需求挑选最合适的方法。</p>
 ]]></content>
     <summary type="html">
@@ -69,9 +72,9 @@
 <li>准备一条USB数据线。（只能通过硬件连接）</li>
 <li>android用chrome打开页面</li>
 <li>手机连接上电脑，打开chrome输入chrome://inspect/ ，进入调试模式。</li>
-<li>chrome能看到这个页面了 <img src="//7xowc1.com1.z0.glb.clouddn.com/14908568082939.png" alt=""><br>5.点击inspect，进入熟悉的调试页面。<img src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照-2017-03-30-下午2.55.05.png" alt="屏幕快照-2017-03-30-下午2.55.05"><br><strong>优点：</strong><br>1.可以用chrome强大的调试工具，调试起来十分方便。</li>
+<li>chrome能看到这个页面了 <img width="50%"  src="//7xowc1.com1.z0.glb.clouddn.com/14908568082939.png" /><br>5.点击inspect，进入熟悉的调试页面。<br><img width="50%"  src="//7xowc1.com1.z0.glb.clouddn.com/屏幕快照-2017-03-30-下午2.55.05.png" /><br><strong>优点：</strong><br>1.可以用chrome强大的调试工具，调试起来十分方便。</li>
 </ol>
-<p><strong>缺点：</strong><br>1.只能android。<br>2.只能用手机版chrome。<br>3.实际使用起来十分卡顿。</p>]]>
+<p><strong>缺点：</strong><br>1.只能android。<br>2.只能用手机版chrome。<br>3.实际使用起来十分卡顿。<br>]]>
     
     </summary>
     
